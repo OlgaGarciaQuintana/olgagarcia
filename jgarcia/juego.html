@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego de Memoria</title>
     <link rel="icon" type="image/png" href="imagenes/favicon.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css"
+        rel="stylesheet">
     <link href="estilos.css" rel="stylesheet">
 </head>
+
 <body>
     <button class="btn-menu" onclick="volverMenu()">
         <i class="bi bi-house-fill"></i>
@@ -22,29 +25,30 @@
         </div>
 
         <div class="controles">
-    <div class="d-flex justify-content-between align-items-center flex-wrap w-100">
-        <div class="d-flex justify-content-center flex-grow-1 mb-3 mb-md-0">
-            <div class="btn-group">
-                <button type="button" class="btn btn-outline-danger btn-dificultad active" data-dificultad="facil">
-                    Fácil<br>(8 pares)
-                </button>
-                <button type="button" class="btn btn-outline-danger btn-dificultad" data-dificultad="medio">
-                    Medio<br>(12 pares)
-                </button>
-                <button type="button" class="btn btn-outline-danger btn-dificultad" data-dificultad="dificil">
-                    Difícil<br>(18 pares)
-                </button>
+            <div class="d-flex justify-content-between align-items-center flex-wrap w-100">
+                <div class="d-flex justify-content-center flex-grow-1 mb-3 mb-md-0">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline-danger btn-dificultad active"
+                            data-dificultad="facil">
+                            Fácil<br>(8 pares)
+                        </button>
+                        <button type="button" class="btn btn-outline-danger btn-dificultad" data-dificultad="medio">
+                            Medio<br>(12 pares)
+                        </button>
+                        <button type="button" class="btn btn-outline-danger btn-dificultad" data-dificultad="dificil">
+                            Difícil<br>(18 pares)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mb-3 mb-md-0">
+                    <button id="btnNuevo" class="btn btn-success btn-lg">
+                        <i class="bi bi-arrow-clockwise me-2"></i>
+                        Nuevo Juego
+                    </button>
+                </div>
             </div>
         </div>
-
-        <div class="mb-3 mb-md-0">
-            <button id="btnNuevo" class="btn btn-success btn-lg">
-                <i class="bi bi-arrow-clockwise me-2"></i>
-                Nuevo Juego
-            </button>
-        </div>
-    </div>
-</div>
 
         <div class="estadisticas">
             <div class="row">
@@ -79,6 +83,85 @@
         <div id="tablero" class="d-none"></div>
     </div>
 
+    <div class="valoracion-container" id="valoracionContainer" style="display: none;">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="bi bi-star-fill me-2"></i>
+                    Valora tu experiencia
+                </h4>
+            </div>
+            <div class="card-body">
+                <form id="formValoracion">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        <div class="invalid-feedback" id="errorNombre"></div>
+                        <small class="form-text text-muted">Solo letras (mínimo 3 caracteres)</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                        <div class="invalid-feedback" id="errorEmail"></div>
+                        <small class="form-text text-muted">ejemplo@correo.com</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="edad" class="form-label">Edad <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="edad" name="edad" required>
+                        <div class="invalid-feedback" id="errorEdad"></div>
+                        <small class="form-text text-muted">Solo numeros</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="puntuacion" class="form-label">Puntuación <span class="text-danger">*</span></label>
+                        <select class="form-select" id="puntuacion" name="puntuacion" required>
+                            <option value="">Selecciona...</option>
+                            <option value="5">⭐⭐⭐⭐⭐</option>
+                            <option value="4">⭐⭐⭐⭐</option>
+                            <option value="3">⭐⭐⭐</option>
+                            <option value="2">⭐⭐</option>
+                            <option value="1">⭐</option>
+                        </select>
+                        <div class="invalid-feedback" id="errorPuntuacion"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="comentario" class="form-label">Comentario</label>
+                        <textarea class="form-control" id="comentario" name="comentario" rows="3"
+                            maxlength="200"></textarea>
+                        <div class="invalid-feedback" id="errorComentario"></div>
+                        <small class="form-text text-muted">opcional</small>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="telefono" class="form-label">Teléfono (opcional)</label>
+                        <input type="text" class="form-control" id="telefono" name="telefono">
+                        <div class="invalid-feedback" id="errorTelefono"></div>
+                        <small class="form-text text-muted">Formato: 123456789 o +34123456789</small>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-send-fill me-2"></i>
+                            Enviar Valoración
+                        </button>
+                        <button type="reset" class="btn btn-outline-secondary">
+                            <i class="bi bi-x-circle me-2"></i>
+                            Limpiar
+                        </button>
+                    </div>
+                </form>
+
+                <div id="mensajeExito" class="alert alert-success mt-3" style="display: none;">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    ¡Gracias por tu valoración!
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="modalVictoria" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -87,7 +170,8 @@
                         <i class="bi bi-trophy-fill me-2"></i>
                         ¡Felicidades!
                     </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center py-4">
                     <h3 class="mb-4">🎉 ¡Has ganado! 🎉</h3>
@@ -106,12 +190,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-warning" id="btnValorar">
+                        <i class="bi bi-star-fill me-2"></i>
+                        Valorar el Juego
+                    </button>
                     <button type="button" class="btn btn-success" id="btnJugarOtra">
                         <i class="bi bi-arrow-clockwise me-2"></i>
                         Jugar otra vez
                     </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -128,4 +216,5 @@
         }
     </script>
 </body>
+
 </html>

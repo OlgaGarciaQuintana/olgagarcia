@@ -14,7 +14,7 @@ var cantidadParejas = {
 };
 var modalVictoria = null;
 
-$(document).ready(function() {
+$(document).ready(function () {
     console.log("La página ya cargó, empezando el juego...");
     modalVictoria = new bootstrap.Modal(document.getElementById("modalVictoria"));
     cargarPersonajes();
@@ -33,7 +33,7 @@ function cargarPersonajes() {
         url: proxyUrl,
         method: "GET",
         dataType: "json",
-        success: function(respuesta) {
+        success: function (respuesta) {
             console.log("¡Personajes cargados!");
             console.log("Total de personajes:", respuesta.content.length);
             todosLosPersonajes = respuesta.content;
@@ -42,7 +42,7 @@ function cargarPersonajes() {
             $("#cargando").hide();
             iniciarJuego();
         },
-        error: function(error) {
+        error: function (error) {
             console.log("Error al cargar personajes:", error);
             alert("Hubo un error al cargar los personajes. Intenta recargar la página.");
         }
@@ -62,17 +62,17 @@ function filtrarPersonajesValidos(personajes) {
 }
 
 function configurarBotones() {
-    $(".btn-dificultad").on("click", function() {
+    $(".btn-dificultad").on("click", function () {
         $(".btn-dificultad").removeClass("active");
         $(this).addClass("active");
         dificultadActual = $(this).data("dificultad");
         console.log("Dificultad cambiada a:", dificultadActual);
     });
-    $("#btnNuevo").on("click", function() {
+    $("#btnNuevo").on("click", function () {
         console.log("Iniciando nuevo juego...");
         iniciarJuego();
     });
-    $("#btnJugarOtra").on("click", function() {
+    $("#btnJugarOtra").on("click", function () {
         modalVictoria.hide();
         iniciarJuego();
     });
@@ -146,7 +146,7 @@ function mostrarCartas() {
         $("#tablero").append(htmlCarta);
     }
     $("#tablero").off("click", ".carta");
-    $("#tablero").on("click", ".carta", function() {
+    $("#tablero").on("click", ".carta", function () {
         clickEnCarta($(this));
     });
     $("#tablero").removeClass("d-none");
@@ -174,11 +174,11 @@ function verificarPar() {
     var personaje2 = carta2.data("personaje");
     console.log("Comparando cartas:", personaje1, "vs", personaje2);
     if (personaje1 === personaje2) {
-        setTimeout(function() {
+        setTimeout(function () {
             parEncontrado(carta1, carta2);
         }, 600);
     } else {
-        setTimeout(function() {
+        setTimeout(function () {
             noEsPar(carta1, carta2);
         }, 1000);
     }
@@ -193,7 +193,7 @@ function parEncontrado(carta1, carta2) {
     actualizarEstadisticas();
     var totalParejas = cantidadParejas[dificultadActual];
     if (parejasEncontradas === totalParejas) {
-        setTimeout(function() {
+        setTimeout(function () {
             juegoGanado();
         }, 500);
     }
@@ -215,7 +215,7 @@ function actualizarEstadisticas() {
 function iniciarCronometro() {
     segundos = 0;
     actualizarCronometro();
-    intervaloCronometro = setInterval(function() {
+    intervaloCronometro = setInterval(function () {
         segundos = segundos + 1;
         actualizarCronometro();
     }, 1000);
@@ -236,3 +236,8 @@ function juegoGanado() {
     $("#tiempoFinal").text($("#tiempo").text());
     modalVictoria.show();
 }
+
+$("#btnValorar").on("click", function () {
+    console.log("Ir al formulario...");
+    window.location.href = "formulario.html";
+});
