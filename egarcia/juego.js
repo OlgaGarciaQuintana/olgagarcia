@@ -8,8 +8,8 @@ class JuegoAdivinaPersonaje {
     this.pistas = [];
     this.personajesJugados = [];
     this.puntuacionPorIntento = { 0: 50, 1: 25, 2: 10 };
-    this.opcionesIncorrectas = []; // botones incorrectos seleccionados
-    this.opcionCorrecta = null; // botón correcto al revelar
+    this.opcionesIncorrectas = [];
+    this.opcionCorrecta = null;
   }
 
   async init() {
@@ -60,14 +60,22 @@ class JuegoAdivinaPersonaje {
 
   generarPistas(personaje) {
     const pistas = [];
+
     if (personaje.gender) {
       const genero =
         personaje.gender.toLowerCase() === "male" ? "masculino" : "femenino";
       pistas.push("Género: " + genero);
     }
-    if (personaje.race) pistas.push("Raza: " + personaje.race);
-    if (personaje.age) pistas.push("Edad: " + personaje.age + " años");
-    return pistas.slice(0, 3);
+
+    if (personaje.race) {
+      pistas.push("Raza: " + personaje.race);
+    }
+
+    if (personaje.age) {
+      pistas.push("Edad: " + personaje.age + " años");
+    }
+
+    return pistas;
   }
 
   seleccionarNombresAleatorios(correcto) {
@@ -82,7 +90,7 @@ class JuegoAdivinaPersonaje {
 
   iniciarRonda() {
     const personajesDisponibles = this.personajes.filter(
-      (p) => !this.personajesJugados.includes(p.id)
+      (p) => !this.personajesJugados.includes(p.id) && this.generarPistas(p).length >= 3
     );
 
     if (personajesDisponibles.length === 0) {
@@ -190,19 +198,19 @@ class JuegoAdivinaPersonaje {
       const puntos = this.puntuacionPorIntento[this.intentoActual];
       this.puntuacionTotal += puntos;
 
-      this.renderizarOpciones(true); // pintar verde
+      this.renderizarOpciones(true);
       this.revelarCarta();
       setTimeout(() => this.mostrarResultado(true, puntos), 800);
     } else {
       this.intentoActual++;
-      this.opcionesIncorrectas.push(nombre); // marcar rojo
+      this.opcionesIncorrectas.push(nombre);
       this.renderizarOpciones();
 
       if (this.intentoActual < 3) {
         this.renderizarPista();
         this.mostrarFeedback(false);
       } else {
-        this.renderizarOpciones(true); // mostrar la correcta al final
+        this.renderizarOpciones(true);
         this.revelarCarta();
         setTimeout(() => this.mostrarResultado(false, 0), 800);
       }
@@ -236,7 +244,7 @@ class JuegoAdivinaPersonaje {
 
     let html = `<div class="mb-3">
                   ${correcto ? '<i class="bi bi-trophy-fill text-warning" style="font-size: 3rem;"></i>'
-                            : '<i class="bi bi-emoji-frown text-muted" style="font-size: 3rem;"></i>'}
+        : '<i class="bi bi-emoji-frown text-muted" style="font-size: 3rem;"></i>'}
                 </div>
                 <h4 class="mb-3">${mensaje}</h4>`;
 
@@ -267,7 +275,6 @@ class JuegoAdivinaPersonaje {
     html += '</div><h2 class="mb-3">¡Juego Completado!</h2>';
     html += '<h3 class="text-success mb-4">Puntuación Final: ' + this.puntuacionTotal + '</h3>';
 
-    // Botones al finalizar el juego
     html += '<div class="d-flex justify-content-center gap-3">';
     html += '<button class="btn btn-success btn-lg" onclick="location.reload()">';
     html += '<i class="bi bi-arrow-clockwise me-2"></i> Jugar de Nuevo</button>';
@@ -279,8 +286,7 @@ class JuegoAdivinaPersonaje {
     resultadoContenido.innerHTML = html;
     resultadoCard.classList.remove("d-none");
     document.getElementById("siguienteBtn").style.display = "none";
-}
-
+  }
 
   mostrarError(mensaje) {
     const pistaTexto = document.getElementById("pistaTexto");
@@ -292,7 +298,6 @@ class JuegoAdivinaPersonaje {
   }
 }
 
-// Inicializar el juego
 document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM listo, iniciando juego...");
   const juego = new JuegoAdivinaPersonaje();
