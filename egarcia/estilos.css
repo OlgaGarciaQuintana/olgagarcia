@@ -34,6 +34,18 @@ body {
     font-size: 1.2rem;
 }
 
+.btn-opcion.correcto {
+    background-color: #d1e7dd; /* verde claro */
+    border-color: #badbcc;
+    color: #0f5132;
+}
+
+.btn-opcion.incorrecto {
+    background-color: #f8d7da; /* rojo claro */
+    border-color: #f5c2c7;
+    color: #842029;
+}
+
 /* Carta del personaje */
 .carta-personaje {
     width: 100%;
