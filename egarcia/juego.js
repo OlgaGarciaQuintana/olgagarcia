@@ -262,19 +262,25 @@ class JuegoAdivinaPersonaje {
     const resultadoCard = document.getElementById("resultadoCard");
     const resultadoContenido = document.getElementById("resultadoContenido");
 
-    let html = `<div class="mb-4">
-                  <i class="bi bi-trophy-fill text-warning" style="font-size: 5rem;"></i>
-                </div>
-                <h2 class="mb-3">¡Juego Completado!</h2>
-                <h3 class="text-success mb-4">Puntuación Final: ${this.puntuacionTotal}</h3>
-                <button class="btn btn-primary btn-lg" onclick="location.reload()">
-                  <i class="bi bi-arrow-clockwise"></i> Jugar de Nuevo
-                </button>`;
+    let html = '<div class="mb-4">';
+    html += '<i class="bi bi-trophy-fill text-warning" style="font-size: 5rem;"></i>';
+    html += '</div><h2 class="mb-3">¡Juego Completado!</h2>';
+    html += '<h3 class="text-success mb-4">Puntuación Final: ' + this.puntuacionTotal + '</h3>';
+
+    // Botones al finalizar el juego
+    html += '<div class="d-flex justify-content-center gap-3">';
+    html += '<button class="btn btn-success btn-lg" onclick="location.reload()">';
+    html += '<i class="bi bi-arrow-clockwise me-2"></i> Jugar de Nuevo</button>';
+
+    html += '<a href="formulario.html" class="btn btn-warning btn-lg">';
+    html += '<i class="bi bi-star-fill me-2"></i> Valorar el Juego</a>';
+    html += '</div>';
 
     resultadoContenido.innerHTML = html;
     resultadoCard.classList.remove("d-none");
     document.getElementById("siguienteBtn").style.display = "none";
-  }
+}
+
 
   mostrarError(mensaje) {
     const pistaTexto = document.getElementById("pistaTexto");
