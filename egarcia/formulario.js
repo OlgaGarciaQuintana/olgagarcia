@@ -40,7 +40,7 @@ $(document).ready(function () {
     });
 
     $('#edad').on('blur', function () {
-        validarCampo(this, regexEdad, 'La edad debe tener numeros y tener mínimo 5 años');
+        validarCampo(this, regexEdad, 'La edad debe tener numeros');
     });
 
     $('#edad').on('input', function () {
@@ -78,7 +78,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         var nombreValido = validarCampo(document.getElementById('nombre'), regexNombre, 'El nombre solo puede contener letras (mínimo 3 caracteres)');
-        var emailValido = validarCampo(document.getElementById('email'), regexEmail, 'El email no es válido (ejemplo: usuario@correo.com)');
+        var emailValido = validarCampo(document.getElementById('email'), regexEmail, 'El email no es válido');
         var edadValida = validarCampo(document.getElementById('edad'), regexEdad, 'La edad debe estar entre 5 y 99 años');
 
         var puntuacion = document.getElementById('puntuacion');
