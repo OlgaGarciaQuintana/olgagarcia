@@ -67,19 +67,6 @@ class JuegoAdivinaPersonaje {
             pistas.push('Edad: ' + personaje.age + ' años');
         }
 
-        if (personaje.affiliation) {
-            pistas.push('Afiliación: ' + personaje.affiliation);
-        }
-
-        if (personaje.status) {
-            pistas.push('Estado: ' + personaje.status);
-        }
-
-        // Asegurar que tengamos al menos 3 pistas
-        while (pistas.length < 3) {
-            pistas.push('Es un personaje de Demon Slayer');
-        }
-
         return pistas.slice(0, 3);
     }
 
