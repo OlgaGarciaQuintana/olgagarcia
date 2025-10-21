@@ -1,3 +1,5 @@
+/* ===== CSS DEL JUEGO DE MEMORIA ===== */
+
 body {
     background-image: url('imagenes/kimetsu_inicio.jpg');
     background-size: cover;
@@ -197,9 +199,8 @@ body::before {
     color: #667eea;
 }
 
-/* ===== ESTILOS DEL FORMULARIO DE VALORACIÓN ===== */
+/* ===== CSS DEL FORMULARIO ===== */
 
-/* Ajustes del contenedor para formulario */
 .contenedor-juego.formulario {
     max-width: 800px;
 }
@@ -211,7 +212,6 @@ body::before {
     font-weight: 500;
 }
 
-/* Estilo del título para formulario */
 .titulo-juego.formulario {
     display: flex;
     align-items: center;
@@ -224,7 +224,6 @@ body::before {
     text-align: center;
 }
 
-/* Tarjeta del formulario */
 .card {
     border: none;
     border-radius: 20px;
@@ -239,6 +238,7 @@ body::before {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -250,6 +250,7 @@ body::before {
         opacity: 0;
         transform: translateY(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -272,7 +273,6 @@ body::before {
     padding: 35px;
 }
 
-/* Labels del formulario */
 .form-label {
     font-weight: 700;
     color: #333;
@@ -288,8 +288,8 @@ body::before {
     font-size: 1.2rem;
 }
 
-/* Inputs y selects */
-.form-control, .form-select {
+.form-control,
+.form-select {
     border: 2px solid #e0e0e0;
     border-radius: 12px;
     padding: 14px 18px;
@@ -298,7 +298,8 @@ body::before {
     background-color: white;
 }
 
-.form-control:focus, .form-select:focus {
+.form-control:focus,
+.form-select:focus {
     border-color: #667eea;
     box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
     animation: pulse 0.5s ease;
@@ -309,9 +310,11 @@ body::before {
     0% {
         transform: scale(1);
     }
+
     50% {
         transform: scale(1.01);
     }
+
     100% {
         transform: scale(1);
     }
@@ -321,7 +324,6 @@ textarea.form-control {
     resize: none;
 }
 
-/* Textos de ayuda */
 .form-text {
     font-size: 0.9rem;
     color: #6c757d;
@@ -335,7 +337,6 @@ textarea.form-control {
     font-weight: 600;
 }
 
-/* Botones del formulario */
 .btn-primary {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border: none;
@@ -371,7 +372,6 @@ textarea.form-control {
     box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
 }
 
-/* Alerta de éxito */
 .alert-success {
     background-color: #d1e7dd;
     border: 3px solid #badbcc;
@@ -388,13 +388,13 @@ textarea.form-control {
         opacity: 0;
         transform: translateX(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
     }
 }
 
-/* Mensajes de error */
 .invalid-feedback {
     display: block;
     color: #dc3545;
@@ -403,7 +403,6 @@ textarea.form-control {
     font-weight: 600;
 }
 
-/* Opciones del select */
 .form-select option {
     padding: 12px;
     font-size: 1.05rem;
@@ -414,19 +413,17 @@ textarea.form-control {
     background: #f8f9fa;
 }
 
-/* Espaciado entre campos */
 .mb-4 {
     margin-bottom: 1.8rem !important;
 }
 
-/* Animación del título */
 .titulo-juego {
     animation: fadeInDown 0.6s ease;
 }
 
-/* ===== RESPONSIVE ===== */
 
 @media screen and (max-width: 768px) {
+
     #tablero.facil,
     #tablero.medio {
         grid-template-columns: repeat(3, 1fr);
@@ -466,13 +463,15 @@ textarea.form-control {
         font-size: 1rem;
     }
 
-    .form-control, .form-select {
+    .form-control,
+    .form-select {
         font-size: 1rem;
         padding: 12px 15px;
     }
 }
 
 @media screen and (max-width: 576px) {
+
     #tablero.facil,
     #tablero.medio,
     #tablero.dificil {
