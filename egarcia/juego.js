@@ -80,10 +80,6 @@ class JuegoAdivinaPersonaje {
     }
 
     iniciarRonda() {
-        document.querySelector('h1.text-center').style.display = 'block';
-document.querySelector('.contador-personajes').style.display = 'block';
-document.querySelector('.card.shadow.mb-4 > .card-body').style.display = 'block';
-
         const personajesDisponibles = this.personajes.filter(
             p => !this.personajesJugados.includes(p.id)
         );
@@ -111,6 +107,10 @@ document.querySelector('.card.shadow.mb-4 > .card-body').style.display = 'block'
 
         document.getElementById('resultadoCard').classList.add('d-none');
         document.getElementById('siguienteBtn').style.display = 'none';
+
+        document.querySelector('h1.text-center').style.display = 'block';
+        document.querySelector('.contador-personajes').style.display = 'block';
+        document.querySelector('.card.shadow.mb-4 > .card-body').style.display = 'block';
     }
 
     actualizarContador() {
@@ -222,9 +222,7 @@ document.querySelector('.card.shadow.mb-4 > .card-body').style.display = 'block'
     mostrarResultado(correcto, puntos) {
         const resultadoCard = document.getElementById('resultadoCard');
         const resultadoContenido = document.getElementById('resultadoContenido');
-        document.querySelector('h1.text-center').style.display = 'none';
-document.querySelector('.contador-personajes').style.display = 'none';
-document.querySelector('.card.shadow.mb-4 > .card-body').style.display = 'none';
+        
 
         let mensaje = '';
         if (puntos === 50) mensaje = '¡Increíble! Primer intento';
@@ -250,6 +248,9 @@ document.querySelector('.card.shadow.mb-4 > .card-body').style.display = 'none';
         resultadoContenido.innerHTML = html;
         resultadoCard.classList.remove('d-none');
         document.getElementById('siguienteBtn').style.display = 'block';
+        document.querySelector('h1.text-center').style.display = 'none';
+        document.querySelector('.contador-personajes').style.display = 'none';
+        document.querySelector('.card.shadow.mb-4 > .card-body').style.display = 'none';
     }
 
     finalizarJuego() {
