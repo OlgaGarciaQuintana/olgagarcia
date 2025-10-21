@@ -80,6 +80,10 @@ class JuegoAdivinaPersonaje {
     }
 
     iniciarRonda() {
+        document.querySelector('h1.text-center').style.display = 'block';
+document.querySelector('.contador-personajes').style.display = 'block';
+document.querySelector('.card.shadow.mb-4 > .card-body').style.display = 'block';
+
         const personajesDisponibles = this.personajes.filter(
             p => !this.personajesJugados.includes(p.id)
         );
@@ -218,6 +222,9 @@ class JuegoAdivinaPersonaje {
     mostrarResultado(correcto, puntos) {
         const resultadoCard = document.getElementById('resultadoCard');
         const resultadoContenido = document.getElementById('resultadoContenido');
+        document.querySelector('h1.text-center').style.display = 'none';
+document.querySelector('.contador-personajes').style.display = 'none';
+document.querySelector('.card.shadow.mb-4 > .card-body').style.display = 'none';
 
         let mensaje = '';
         if (puntos === 50) mensaje = '¡Increíble! Primer intento';
